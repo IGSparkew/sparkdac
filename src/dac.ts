@@ -2,6 +2,7 @@ import { Registry } from './registry';
 import type { ICodeData, IFunctionOutput, IConfigCode, IFunctionData } from './models';
 import fs from 'fs';
 import { Utils } from './utils';
+import { ErrorImportedFile, ErrorNoFunctionFound, ErrorSerializeddData } from './error';
 
 /**
  * You can import config as string from Json object with the ICodeData structure
@@ -15,7 +16,7 @@ export function importedDataAsCode<T>(data: string, clazz: { new (...args: any[]
     const confData: ICodeData = JSON.parse(data);
 
     if (confData == null) {
-        throw new Error("Data can't be serialized");
+        throw new ErrorSerializeddData(data)
     }
 
     Utils.execute(confData, clazz.name);
@@ -33,7 +34,7 @@ export function importedDataFileAsCode<T>(path: string, clazz: { new (...args: a
     const value = Utils.reader(path);
 
     if (value == undefined) {
-        throw new Error("The imported file can't learn the data file");
+        throw new ErrorImportedFile(path);
     }
 
     Utils.execute(value, clazz.name);
@@ -51,7 +52,7 @@ export function exportCodeAsData<T>(clazz: { new (...args: any[]): T }, values: 
    const functions = Registry.getFunctionsByClassName(clazz.name);
 
    if (functions.size == 0) {
-    throw new Error("No Functions delared in this class");
+    throw new ErrorNoFunctionFound(clazz.name);
    }
 
   return Utils.treatment(functions, values);

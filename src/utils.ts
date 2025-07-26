@@ -1,3 +1,4 @@
+import { ErrorNoFunctionFound, ErrorReader } from './error';
 import type { ICodeData, IFunctionOutput, IConfigCode, IFunctionData } from './models';
 import { Registry } from './registry';
 import fs from 'fs';
@@ -45,7 +46,7 @@ export class Utils {
             const data: ICodeData = JSON.parse(fs.readFileSync(path, 'utf-8'));
 
             if (data == null) {
-                throw new Error("File not found or can't be serialize");
+                throw new ErrorReader(path);
             }
 
             return data;
@@ -61,7 +62,7 @@ export class Utils {
             const fnc = Registry.get(conf.name, clazzName);
 
             if (fnc == undefined) {
-                throw new Error("Function not found!");
+                throw new ErrorNoFunctionFound(clazzName);
             }
 
             const values: any[] = [];
@@ -75,7 +76,7 @@ export class Utils {
                 for (const pFnc of fnc.params) {
                     const p = conf.params.find(p => p.name == pFnc);
                     if (p == undefined) {
-                        throw new Error(`Error the paramater ${pFnc} of ${conf.name} function not exist in config`);
+                        throw new ErrorNoFunctionFound(clazzName);
                     }
 
                     values.push(p.value);
