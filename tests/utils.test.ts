@@ -115,8 +115,6 @@ describe("test reader function", () => {
   });
 });
 
-
-
 describe("test execute function", () => {
   test("test execute data", () => {
     expect(Utils.execute(data, Test.name)).toEqual("Hello jhon");
