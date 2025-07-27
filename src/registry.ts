@@ -5,9 +5,9 @@ export class Registry {
     static methods: Map<string, IFunctionData> = new Map<string, IFunctionData>();
 
     static add(name: string, func: Function, params: string[], clazz: string) {
-
         if (this.methods.size > 0) {
-            if (this.methods.get(name) != undefined && this.methods.get(name)?.clazz == clazz) {
+
+            if (this.methods.get(this.getField(name, clazz)) != undefined || this.methods.get(this.getField(name, clazz))?.clazz == clazz) {
                 throw new Error("Function Already Exist !");
             }
         }
