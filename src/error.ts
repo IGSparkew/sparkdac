@@ -35,6 +35,6 @@ export class ErrorNoParamsFound extends ErrorDAC {
 
 export class ErrorReader extends ErrorDAC {
     constructor(fpath: string) {
-        super("Reader Error", `No File found or can't serialize data`)
+        super("Reader Error", `No File found or can't serialize data at this path: ${fpath}`)
     }
 }

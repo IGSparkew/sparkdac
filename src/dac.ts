@@ -71,5 +71,3 @@ export function exportCodeAsFile<T>(path: string, clazz: { new (...args: any[]):
     const data = exportCodeAsData(clazz, values);
     fs.writeFile(path, JSON.stringify(data, null, 4), callBack);
 }
-
-

@@ -8,7 +8,7 @@
     },
     "lib": ["ESNext"],
     "module": "esnext",
-    "target": "esnext",
+    "target": "ES5",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
@@ -21,6 +21,7 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowJs": true,
     "types": [
       "bun-types"

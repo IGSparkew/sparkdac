@@ -46,12 +46,12 @@ export class Utils {
             const data: ICodeData = JSON.parse(fs.readFileSync(path, 'utf-8'));
 
             if (data == null) {
-                throw new ErrorReader(path);
+                throw new Error();
             }
 
             return data;
         } catch (e) {
-            console.error(e);
+            throw new ErrorReader(path);
         }
     }
 
@@ -84,7 +84,7 @@ export class Utils {
             }
 
 
-            fnc.func([...values]);
+            return fnc.func([...values]);
         }
     }
 }

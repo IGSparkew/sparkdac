@@ -2,3 +2,4 @@
 bun.lock
 /dist
 tsconfig.types.tsbuildinfo
+package-lock.json
