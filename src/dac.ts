@@ -69,5 +69,10 @@ export function exportCodeAsData<T>(clazz: { new (...args: any[]): T }, values: 
  */
 export function exportCodeAsFile<T>(path: string, clazz: { new (...args: any[]): T }, values: Map<string, IFunctionOutput[]>, callBack: fs.NoParamCallback = ()=>{}) {
     const data = exportCodeAsData(clazz, values);
+
+    if (data == undefined) {
+        throw new ErrorSerializeddData("No data to export");
+    }
+
     fs.writeFile(path, JSON.stringify(data, null, 4), callBack);
 }
