@@ -1,0 +1,3 @@
+tests/
+bun.lock
+package-lock.json

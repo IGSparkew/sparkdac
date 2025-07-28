@@ -27,5 +27,6 @@
     "dist/*.d.ts"
   ],
   "author": "IGSparkew",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": ["data", "data as code", "programing", "code", "bun", "automation", "real time execution", "typescript", "spark-dac"]
 }
